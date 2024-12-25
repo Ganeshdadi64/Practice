@@ -5,6 +5,7 @@ public class FindTarget {
     public static boolean isSubsetSum(int[] arr, int n, int target) {
         // Base Cases
         if (target == 0) {
+
             return true;
         }
         if (n == 0) {
