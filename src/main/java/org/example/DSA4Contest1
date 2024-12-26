@@ -1,0 +1,188 @@
+https://www.scaler.com/academy/mentee-dashboard/core-curriculum/m/60/interview
+
+1)Best Time to Buy and Sell Stocks I
+Flag Question
+Q1
+Problem Description
+Say you have an array, A, for which the ith element is the price of a given stock on day i.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.
+Q20
+3
+Return the maximum possible profit.
+Q
+Problem Constraints
+0 <= A.size() <= 700000
+Q5
+1 <= A[i] <= 107
+
+
+
+
+
+solution;
+========
+
+
+public class Solution {
+    public int maxProfit(int[] A) {
+        if (A == null || A.length == 0) return 0;
+
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+
+        for (int price : A) {
+            // Update minimum price
+            minPrice = Math.min(minPrice, price);
+            // Calculate profit if sold today
+            int profit = price - minPrice;
+            // Update maximum profit
+            maxProfit = Math.max(maxProfit, profit);
+        }
+
+        return maxProfit;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] A = {7, 1, 5, 3, 6, 4};
+        System.out.println(solution.maxProfit(A)); // Output: 5
+    }
+}
+
+
+
+
+2)Description
+You are given a set of coins A. In how many ways can you make sum B assuming you have infinite amount of each coin in the set
+020
+NOTE:
+• Coins in set A will be unique. Expected space complexity of this problem is O(B).
+230
+• The answer can overflow. So, return the answer % (106 + 7).
+240
+Problem Constraints
+1 <= A <= 500
+Q5
+1 <= A[i] <= 1000
+1 <= B <= 50000
+
+
+
+solution
+==========
+
+public class Solution {
+    public int coinChangeWays(int[] A, int B) {
+        final int MOD = 1000000007;
+
+        // Create a DP array of size B + 1
+        int[] dp = new int[B + 1];
+        dp[0] = 1; // Base case: 1 way to make sum 0
+
+        // Iterate over each coin
+        for (int coin : A) {
+            // Update dp for all sums from coin to B
+            for (int x = coin; x <= B; x++) {
+                dp[x] = (dp[x] + dp[x - coin]) % MOD;
+            }
+        }
+
+        return dp[B];
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[] A = {1, 2, 5};
+        int B = 5;
+        System.out.println("Number of ways to make sum " + B + ": " + solution.coinChangeWays(A, B));
+    }
+}
+
+
+
+
+
+3)your climbing a staircase it takes a steps to reach to top each time you can climb 1 or 2 steps in how many distinct ways you can climb a tree
+
+
+
+Example Explanation:
+Let’s say
+𝐴=4
+A=4. This means you need to climb 4 steps. Let’s calculate the number of distinct ways.
+
+Step-by-Step Calculation:
+
+
+
+public class Solution {
+    public int climbStairs(int A) {
+        // Modulo to prevent overflow
+        final int MOD = 1000000007;
+
+        // Base cases
+        if (A == 1) return 1;
+        if (A == 2) return 2;
+
+        // Variables to store the last two results
+        int prev1 = 1; // dp[1]
+        int prev2 = 2; // dp[2]
+
+        // Calculate dp values iteratively
+        int current = 0;
+        for (int i = 3; i <= A; i++) {
+            current = (prev1 + prev2) % MOD;
+            prev1 = prev2;
+            prev2 = current;
+        }
+
+        return current;
+    }
+}
+
+
+
+
+
+
+
+4)Ganesh is a mathematician and share love to solve problems, one day her friend Bob gave her string A size N consisting of opening and closing parenthesis and asked her to find length of the longest valid parentheses substring.
+
+
+
+
+solution
+=========
+
+
+public class Solution {
+    public int longestValidParentheses(String A) {
+        int maxLen = 0;
+        Stack<Integer> stack = new Stack<>();
+        stack.push(-1); // Base index for valid substring calculation
+
+        for (int i = 0; i < A.length(); i++) {
+            if (A.charAt(i) == '(') {
+                stack.push(i); // Push the index of the opening parenthesis
+            } else {
+                stack.pop(); // Pop the last unmatched opening parenthesis
+                if (stack.isEmpty()) {
+                    stack.push(i); // Push the current index as a base
+                } else {
+                    maxLen = Math.max(maxLen, i - stack.peek());
+                }
+            }
+        }
+
+        return maxLen;
+    }
+}
+
+
+
+
+5)given a array of integers A IF I < J and A[i]>A[j] then the pair(i,j) is called inversion of A. FIND the total number inversions of A.
+
+
+
+
