@@ -1,0 +1,62 @@
+
+i=0,j=9
+A[i]=1,A[j]=5
+
+Step 1: Calculate the Sum
+
+sum=A[i]+A[j]=1+5=6
+
+Step 2: Count Occurrences
+Count occurrences of
+A[i]=1:
+A[i]=1, occurs 2 times.
+
+Move i to index 1, then to index 2.
+
+Count occurrences of
+
+
+ // Step 1: Initial Setup
+        int[] A = {1, 1, 2, 3, 4, 5, 6, 5, 5, 5};  // Example array
+        int B = 6;  // Target sum
+        int i = 0;  // Initial index for i
+        int j = A.length - 1;  // Initial index for j (last element)
+        int count = 0;  // Initialize count to store total pairs
+
+        // Print initial values
+        System.out.println("Initial Setup: i = " + i + ", j = " + j + ", A[i] = " + A[i] + ", A[j] = " + A[j]);
+
+        // Step 2: Check the sum
+        int sum = A[i] + A[j];
+        System.out.println("Step 1: sum = A[i] + A[j] = " + A[i] + " + " + A[j] + " = " + sum + " (equals B)");
+
+        // If sum is equal to B, proceed with counting occurrences
+        if (sum == B) {
+            // Count occurrences of A[i] = 1
+            int count_i = 1;
+            while (i + 1 < A.length && A[i] == A[i + 1]) {
+                count_i++;
+                i++;
+            }
+            System.out.println("A[i] = " + A[i] + " occurs " + count_i + " times.");
+
+            // Count occurrences of A[j] = 5
+            int count_j = 1;
+            while (j - 1 >= 0 && A[j] == A[j - 1]) {
+                count_j++;
+                j--;
+            }
+            System.out.println("A[j] = " + A[j] + " occurs " + count_j + " times.");
+
+            // Step 3: Calculate Total Pairs
+            int totalPairs = count_i * count_j;
+            System.out.println("Total pairs = " + count_i + " * " + count_j + " = " + totalPairs);
+
+            // Update count
+            count = totalPairs;
+            System.out.println("Update count: count = " + count);
+        }
+
+        // Output the final result
+        System.out.println("Final count of pairs = " + count);
+    }

@@ -20,7 +20,7 @@ Q5
 
 
 solution;
-========
+=========
 
 
 public class Solution {
@@ -67,19 +67,50 @@ Q5
 1 <= B <= 50000
 
 
+Step-by-Step Solution
+1. List All Possibilities
+You can combine the coins in various ways to make the sum 4. Let's enumerate all possibilities:
+
+Using only coin 1:
+
+[1, 1, 1, 1] → 1 way.
+Using coins 1 and 2:
+
+[1, 1, 2] → 1 way.
+[2, 2] → 1 way.
+Using coins 1 and 3:
+
+[1, 3] → 1 way.
+Using only coin 3:
+
+Not possible.
+2. Total Ways
+Total ways to make the sum 4 using [1, 2, 3]:
+
+[1, 1, 1, 1]
+[1, 1, 2]
+[2, 2]
+[1, 3]
+Answer: 4 ways
+
+
+
+
+
 
 solution
 ==========
 
 public class Solution {
     public int coinChangeWays(int[] A, int B) {
-        final int MOD = 1000000007;
+        final int MOD = 100000007;
 
         // Create a DP array of size B + 1
         int[] dp = new int[B + 1];
         dp[0] = 1; // Base case: 1 way to make sum 0
 
         // Iterate over each coin
+
         for (int coin : A) {
             // Update dp for all sums from coin to B
             for (int x = coin; x <= B; x++) {
