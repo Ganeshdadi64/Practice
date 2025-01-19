@@ -60,3 +60,14 @@ Docker images are read-only templates. When a container is created, a writable l
 Registry Support:
 
 Docker images can be stored and shared via registries like Docker Hub, AWS Elastic Container Registry (ECR), or Google Container Registry (GCR).
+
+Note: One docker container will create from only one docker image
+
+
+
+ekkada yala ante eppativaraku manum virtual machines nee use chese vallam a small service run cheyyadaniki oka virtual machine kavalasinappudu
+LIKE EBS EC2 lo either 32 bit or 64 bit nee OS nee install cheyyali and some addetial installations also and machine ki machine ki
+type compactability vastundhi so veetine avoid cheyyadaniki docker vachhindhi
+
+ante docker container andhi oka run time package indhulo application code and supporting libraries and run time setup and kavalasinantha memory matrame untai
+prathi OS lo docker engin nee install chestam so ee docker engin other OS lo kuda run avuthundhi because every OS have docker engin
