@@ -1,1 +1,17 @@
-docker content
+use case annalaysin of docker flow ekkadekkada mistakes cheyyagalamo
+
+1)deployment mistake
+in our local if we use python2 assume but in server(cloud) deployment they are used python3 by mistake it is big mistake
+2)folder structure or missing file:
+=====================================
+they is no rule both our local and server structures should the same and also some times files missing and path miss matching also problem
+3)version incompatibility
+
+4)Port mismatch
+is suppose in ou local port 8080 is used but in server there is chance that 8080 is not free some one is using
+
+
+solution1: if human handle or try to doing these there is high chances for doing silly silly mistakes not recoment
+solution2: if we use automation it is good part but port mismatch correction we automation cannot handle it is not recommend
+solution3:
+
