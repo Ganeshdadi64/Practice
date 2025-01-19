@@ -13,5 +13,50 @@ is suppose in ou local port 8080 is used but in server there is chance that 8080
 
 solution1: if human handle or try to doing these there is high chances for doing silly silly mistakes not recoment
 solution2: if we use automation it is good part but port mismatch correction we automation cannot handle it is not recommend
-solution3:
+solution3:docker
 
+
+
+steps for execution:
+
+step1: create a docker image form docker file
+
+
+What is a Dockerfile?
+A Dockerfile is a text file that contains a series of instructions to build a Docker image. It defines the steps required to assemble the image, specifying the base image, dependencies, application code, environment variables, and commands to run.
+
+Key Features:
+
+Acts as a blueprint for building Docker images.
+Uses a domain-specific language with straightforward syntax.
+Each instruction in the Dockerfile creates a layer in the resulting Docker image
+
+Docker Images:
+==============
+
+A Docker Image is a lightweight, standalone, and immutable package that contains all the necessary elements to run a specific application. These elements include:
+
+Application code
+Runtime environment
+System tools and libraries
+Configuration files and dependencies
+
+
+
+Key Characteristics of Docker Images
+Layered Structure:
+
+Docker images are built in layers, where each instruction in a Dockerfile (e.g., FROM, RUN, COPY) creates a new layer.
+Layers are cached, meaning subsequent builds reuse unchanged layers, making image creation faster and more efficient.
+Immutability:
+
+Once built, a Docker image cannot be modified. To make changes, you need to create a new image by updating the Dockerfile and rebuilding.
+Portability:
+
+Docker images are platform-independent and can run on any host with Docker installed, making them ideal for consistent deployments across environments.
+Read-Only:
+
+Docker images are read-only templates. When a container is created, a writable layer is added on top of the image, but the image itself remains unchanged.
+Registry Support:
+
+Docker images can be stored and shared via registries like Docker Hub, AWS Elastic Container Registry (ECR), or Google Container Registry (GCR).
