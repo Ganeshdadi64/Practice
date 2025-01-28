@@ -1,0 +1,21 @@
+Use cases of apachi kafha
+========================
+
+1)Messaging
+2)website activity tracking
+3) metrics
+4)streaming process
+
+in application properties lo we are setting consumers and producer properties and
+producer: just like a one service which is send some message
+consumer: just like a one service which is received a message from producer
+
+here consumers are assigned group ids as well
+@kafkaListner(topic name="message1"  groupid="ganesh")
+ekkada topic name este aa topic ki ee consumer class subscribe inattu and groupid as well
+
+for example in application properties lo consumer group if gopi ani undhi like consumer2 class ee class
+message1 nee read cheyya ledu
+
+@kafkaListner(topic name="message1"  groupid="gopi") for consumer class
+ee message nee consumer class read cheyyaledu because that is another group
