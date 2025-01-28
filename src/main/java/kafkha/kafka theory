@@ -14,8 +14,8 @@ here consumers are assigned group ids as well
 @kafkaListner(topic name="message1"  groupid="ganesh")
 ekkada topic name este aa topic ki ee consumer class subscribe inattu and groupid as well
 
-for example in application properties lo consumer group if gopi ani undhi like consumer2 class ee class
-message1 nee read cheyya ledu
+for example in application properties lo consumer group lo gopi ani undhi like consumer2 class, ee class
+message1 nee read cheyya ledu because group different
 
-@kafkaListner(topic name="message1"  groupid="gopi") for consumer class
-ee message nee consumer class read cheyyaledu because that is another group
+@kafkaListner(topic name="message2"  groupid="gopi") for consumer1 class
+ee message nee consumer class read cheyyaledu because that is another group only consumer1 can read
