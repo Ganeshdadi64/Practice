@@ -1,0 +1,146 @@
+1)What is the purpose of default methods in interface in java8?
+
+Why Default Methods Were Introduced in Java 8
+Before Java 8, interfaces could only have abstract methods, which meant
+every class implementing an interface had to provide implementations for
+all its methods. While this was fine in many cases, it posed significant
+challenges when extending or modifying existing interfaces. Here's a deep
+dive into the problems, solutions, and the reasoning behind the introduction
+of default methods in Java 8.
+
+
+1. The Problem: Backward Compatibility
+Suppose an interface is widely used by multiple classes in a large application or library. For example:
+
+
+interface Vehicle {
+    void start();
+    void stop();
+}
+Many classes might implement this interface:
+
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car starting...");
+    }
+    public void stop() {
+        System.out.println("Car stopping...");
+    }
+}
+
+class Bike implements Vehicle {
+    public void start() {
+        System.out.println("Bike starting...");
+    }
+    public void stop() {
+        System.out.println("Bike stopping...");
+    }
+}
+
+Problem:
+========
+
+Now, if you want to add a new method to the Vehicle interface
+(e.g., void refuel()), you would break every single class that implements
+this interface. Each class would now be required to implement the new
+refuel() method, even if it doesn't need it:
+
+interface Vehicle {
+    void start();
+    void stop();
+    void refuel(); // Added method
+}
+
+
+Impact: This change would force all existing implementations (Car, Bike, etc.)
+to update their code, which can be costly and time-consuming.
+
+2. The Solution: Default Methods
+To solve this backward compatibility issue, default methods were introduced
+ in Java 8. With default methods, you can provide a default implementation
+  directly in the interface, so existing classes don’t have to override
+  them unless they want to provide a custom implementation.
+
+
+interface Vehicle {
+    void start();
+    void stop();
+
+    // New default method
+    default void refuel() {
+        System.out.println("Default refueling...");
+    }
+}
+
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car starting...");
+    }
+
+    public void stop() {
+        System.out.println("Car stopping...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle car = new Car();
+        car.start();   // Output: Car starting...
+        car.refuel();  // Output: Default refueling...
+    }
+}
+
+
+
+2)if i have 2 interfaces having same name default methods and the class car implemets bothe the
+interfaces which methode is execute?
+
+
+interface A {
+    default void show() {
+        System.out.println("A's show");
+    }
+}
+
+interface B {
+    default void show() {
+        System.out.println("B's show");
+    }
+}
+
+class C implements A, B {
+    @Override
+    public void show() {
+        // Explicitly specify which interface's default method to call
+        A.super.show();
+    }
+}
+
+Interface A declares a default method called show().
+The default keyword means this method already has an implementation,
+ so any class implementing A will inherit this method unless it overrides it.
+
+Class C implements both interfaces A and B. Since both interfaces have a show() default method,
+there is an ambiguity about which show() method to inherit.
+
+Key Issue: Ambiguity
+When a class implements multiple interfaces that define the same default method, the compiler does not know which implementation to use. For example:
+
+C c = new C();
+c.show();
+
+If the show() method is not overridden in C, the compiler will throw a compilation error,
+because it cannot decide whether to use A's show() or B's show().
+
+
+@Override
+public void show() {
+    A.super.show();
+}
+
+ekkada show method ki override eachham and parent nee kuda declare chesam so aa parent method lo unna show method nee override cheyyu ani
+
+
+
+
+
