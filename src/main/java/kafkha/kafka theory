@@ -23,6 +23,7 @@ ee message nee consumer class read cheyyaledu because that is another group only
 
 
 Note:
+a
 
 up now we are dealing with only normal string if suppose producer sends a serilizable Json data, we need to deserilize that data and consume
 for that we will use JsonDeserilizer inbuild class
