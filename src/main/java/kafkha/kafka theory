@@ -19,3 +19,13 @@ message1 nee read cheyya ledu because group different
 
 @kafkaListner(topic name="message2"  groupid="gopi") for consumer1 class
 ee message nee consumer class read cheyyaledu because that is another group only consumer1 can read
+
+
+
+Note:
+
+up now we are dealing with only normal string if suppose producer sends a serilizable Json data, we need to deserilize that data and consume
+for that we will use JsonDeserilizer inbuild class
+
+Producer Java object nee serilize chesi json ga convert chesi topic ki send chestundhi then consumer aa json datane jsondeserilize chesi java object ga convert chesi use chesukuntundi
+producer cannot send java object directly because that consumer may uses python language
