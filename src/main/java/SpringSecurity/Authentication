@@ -1,0 +1,14 @@
+Oauth implementation we required 4 key things
+1)user
+2)Application  --  like productservice or payment service
+3)
+
+
+
+for example i implement one server like userserver
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+</dependency>
+
+i am keep this dependency in userservice pom.xml file now userservice is act like a authorization server
