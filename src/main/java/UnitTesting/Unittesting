@@ -1,0 +1,8 @@
+unittesting: here we simply test line by line or particular methods without external dependency
+
+IntegralTesting: for suppose i want to test fackstore API i will no proble but if fackstore team they are come with new changes in data like they added authentication like that we need to get
+prayer information then we will do
+
+
+Functional testing:
+===================

@@ -1,3 +1,102 @@
+******How consumer consumes message from Topi
+===============================================
+
+Understanding Kafka Consumer Partition Assignment in a Consumer Group
+Kafka distributes partitions among consumers in a Consumer Group to ensure scalability and parallel processing.
+Let’s break down these two key points with examples.
+
+
+
+1)Each Partition is Assigned to One Consumer within a Group
+==========================================================
+
+A Kafka topic can have multiple partitions.
+A consumer group can have multiple consumers.
+Each partition is assigned to only one consumer within a group
+to ensure that a message is processed by only one consumer in that group.
+
+Example: Single Consumer in a Consumer Group
+
+🔹 Topic: order-topic
+🔹 Partitions: 3 (P0, P1, P2)
+🔹 Consumer Group: order-group
+🔹 Consumers in the Group: 1 (Consumer-1)
+
+Since only one consumer exists, it will consume all partitions:
+
+Partition	Assigned to Consumer
+P0	Consumer-1
+P1	Consumer-1
+P2	Consumer-1
+✔ All messages in order-topic will be processed by Consumer-1.
+
+
+2)2️⃣ If Multiple Consumers Exist in a Group, Kafka Balances Partitions Among Them
+
+If more consumers join the group, Kafka automatically rebalances and assigns partitions to different consumers.
+Partitions are distributed evenly among available consumers.
+
+Example: Multiple Consumers in a Consumer Group
+🔹 Topic: order-topic
+🔹 Partitions: 3 (P0, P1, P2)
+🔹 Consumer Group: order-group
+🔹 Consumers in the Group: 3 (Consumer-1, Consumer-2, Consumer-3)
+
+Kafka assigns one partition per consumer (if possible):
+
+
+
+Partition	Assigned to Consumer
+P0	Consumer-1
+P1	Consumer-2
+P2	Consumer-3
+✔ Now, each consumer gets one partition and processes messages in parallel.
+
+
+3)What Happens If We Add More Consumers Than Partitions?
+🔹 Scenario: 4 Consumers (Consumer-1, Consumer-2, Consumer-3, Consumer-4)
+🔹 Partitions: 3 (P0, P1, P2)
+
+
+
+Partition	Assigned to Consumer
+P0	Consumer-1
+P1	Consumer-2
+P2	Consumer-3
+❌ Extra Consumer (C4)	Idle (No Partitions Assigned)
+✔ Consumers > Partitions → Some consumers remain idle.
+✔ Kafka does NOT assign a single partition to multiple consumers in the same group.
+
+
+
+🔄 What Happens When a Consumer Joins or Leaves the Group?
+If a New Consumer Joins (Consumer-4 Added)
+    Kafka rebalances the partitions among 4 consumers.
+    Now, some consumers may handle fewer partitions.
+If a Consumer Leaves (Consumer-2 Crashes)
+    Kafka redistributes the partitions among the remaining consumers.
+    The partitions assigned to Consumer-2 will now be assigned to another active consumer.
+
+
+ 🔥 Summary
+ ✅ One partition is assigned to only one consumer within a group.
+ ✅ If multiple consumers exist, Kafka evenly distributes partitions among them.
+ ✅ More consumers than partitions → Some consumers remain idle.
+ ✅ When consumers join or leave, Kafka rebalances partitions automatically.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Use cases of apachi kafha
 ========================
 
