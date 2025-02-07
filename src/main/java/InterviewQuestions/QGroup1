@@ -141,6 +141,29 @@ public void show() {
 ekkada show method ki override eachham and parent nee kuda declare chesam so aa parent method lo unna show method nee override cheyyu ani
 
 
+Q) What is the output of the below code?
+
+public class Test {
+    public static void main(String[] args) {
+        String s1 = "Java";
+        String s2 = "Java";
+        String s3 = new String("Java");
+
+        System.out.println(s1 == s2); // Line 1
+        System.out.println(s1 == s3); // Line 2
+        System.out.println(s1.equals(s3)); // Line 3
+    }
+}
+
+
+String Pool Concept
+In Java, string literals (like "Java") are stored in a special memory area called the String Pool. If a string with the same value already exists in the pool, Java will reuse the existing reference instead of creating a new one.
+
+Memory Allocation for Strings
+
+s1 = "Java"; → A string literal "Java" is stored in the String Pool, and s1 refers to it.
+s2 = "Java"; → Since "Java" already exists in the String Pool, s2 refers to the same string as s1.
+s3 = new String("Java"); → A new String object is created in the heap memory, separate from the string pool.
 
 
 

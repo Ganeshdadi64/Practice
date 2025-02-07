@@ -1,5 +1,30 @@
 package org.example.TwoPointers;
 
+
+//Problem Statement:
+//You are given an array heights[] of size N, where heights[i] represents the height of a vertical line at index i.
+//Find two lines that, together with the x-axis, form a container that holds the maximum amount
+//of water. Return the maximum area that can be stored between two lines.
+//
+
+
+
+//explanation:
+//You are given an array heights[], where each element represents the height of a vertical line.
+//
+//Your task is to find two lines that can hold the maximum water when considered as the sides of a
+//container. The width of the container is the distance between these two lines.
+//
+
+//heights = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+//Best choice:
+//Pick height[1] = 8 and height[8] = 7
+//Width = (8 - 1) = 7
+//Water held = min(8, 7) * 7 = 49
+
+
+
+
 public class FindMaxWaterArea {
 
 //    public static void main(String[] args) {

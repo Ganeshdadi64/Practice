@@ -1,5 +1,22 @@
 package org.example.TwoPointers;
 
+//Problem Statement:
+//Given a sorted integer array A of size N and an integer B, find the number of unique pairs (A[i], A[j]) such that:
+//
+//A[i] + A[j] = B
+//i < j (i.e., A[i] comes before A[j] in the array)
+//Since the answer can be large, return it modulo 10⁹ + 7 (1000000007).
+//
+
+//Pairs that sum to 3:
+//(1, 2) → Found at index (0,2)
+//(1, 2) → Found at index (0,3)
+//(1, 2) → Found at index (1,2)
+//(1, 2) → Found at index (1,3)
+
+//ans=4
+
+
 
 public class CountNumberOfPairs {
 
