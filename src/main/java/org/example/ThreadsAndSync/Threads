@@ -1,0 +1,87 @@
+1)❓ What is the difference between a process and a thread?
+✅ A process is an independent execution unit with its own memory space, while a thread is a
+lightweight subprocess that shares memory within a process.
+
+
+❓ How do you create a thread in Java?
+✅ There are two ways to create a thread:
+1️⃣ Extending Thread class
+
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread();
+        t1.start();
+    }
+}
+
+
+2️⃣ Implementing Runnable interface (preferred) why this preferred
+class MyRunnable implements Runnable {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable());
+        t1.start();
+    }
+}
+
+
+❓ What is the difference between start() and run() methods in Java threads?
+✅ Calling start() creates a new thread, while calling run() directly executes in the same
+thread (no concurrency).
+
+
+run() uses main thread new thread em create cheyyadu
+
+public class Test {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> System.out.println(Thread.currentThread().getName()));
+        t1.run();  // Runs in main thread
+        t1.start(); // Runs in a separate thread
+    }
+}
+
+
+
+2. Thread Synchronization & Safety
+❓ What is synchronization in Java?
+✅ Synchronization ensures that only one thread at a time can access a shared resource, preventing race conditions.
+
+❓ How do you implement synchronization in Java?
+✅ Use the synchronized keyword:
+
+class SharedResource {
+    synchronized void printNumbers() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+            try { Thread.sleep(100); } catch (Exception e) {}
+        }
+    }
+}
+
+How Synchronization Works Here
+If multiple threads try to call printNumbers(), only one thread at a time can execute it.
+The thread locks the instance of SharedResource before executing printNumbers().
+Other threads must wait until the first thread completes execution and releases the lock.
+Once the first thread finishes, the next waiting thread gets a chance to execute.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+1)what are the new feature of java17?
+
+i)sealed classes
+   Sealed classes restrict which other classes can extend them.
+   Useful for defining controlled hierarchies.
+
+ use cases:This is useful for ensuring better encapsulation, maintainability, and security.
+ // Only Car and Truck can extend Vehicle
+ public sealed class Vehicle permits Car, Truck {}
+
+ final class Car extends Vehicle {}   // Allowed
+ final class Truck extends Vehicle {} // Allowed
+ // class Bus extends Vehicle {}   // ❌ Compilation Error
+
+
+ii)✅ Pattern Matching for Switch (Preview) – JEP 406
+   Enables more concise switch expressions with pattern matching.
+
+
+   static void printValue(Object obj) {
+       switch (obj) {
+           case Integer i -> System.out.println("Integer: " + i);
+           case String s -> System.out.println("String: " + s);
+           default -> System.out.println("Unknown");
+       }
+   }
+
+
+actuall ga switch syntax nee modify chesaru
