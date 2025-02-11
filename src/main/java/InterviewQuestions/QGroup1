@@ -167,3 +167,61 @@ s3 = new String("Java"); → A new String object is created in the heap memory, 
 
 
 
+
+
+Object-Oriented Programming (OOP) Principles:
+** explain class and object.
+1)Can you explain the four basic principles of OOP?
+2)What is inheritance, and how is it implemented in Java?
+3)How does polymorphism work in Java?
+4)What are the differences between abstraction and encapsulation?
+5) what is interface and explain the difference between interface and abstraction?
+6)what is functional interface
+
+
+
+
+
+Core Java Concepts:
+
+**  explain collection
+*** explain java 8 featurs
+**  explain basic datastructurs like arrays, hashmap and hashset , linked list in single line answer
+
+
+
+1)What are the main features introduced in Java 8?
+2)Can you discuss the internal workings of HashMap?
+3)What are the top Java Features?
+4)What is JVM?
+5)What is JIT?
+
+6)What are Memory storages available with JVM?
+7)What is a classloader?
+8)Explain public static void main(String args[]) in Java.
+9)What is Java String Pool?
+10)Explain different data types in Java.
+11)When a byte datatype is used?               (optional)
+12)Can we declare Pointer in Java?
+13)What is the Wrapper class in Java?
+14)Why do we need wrapper classes?
+15)Differentiate between instance and local variables.
+16)What is a Class Variable?                   (optional)
+17)What is a static variable?
+18)What is the difference between System.out, System.err, and System.in?   (optional)
+19)what is thread
+20)explain thread life cycle
+21)What are the FileInputStream and FileOutputStream?
+22)explain string buffer and string builder
+23)What is an I/O filter?
+24)types of operators
+25)Explain the difference between >> and >>> operators.
+26)What is dot operator? in java
+27)What are the differences between String and StringBuffer?
+28)What are the differences between StringBuffer and StringBuilder?
+29) What is this keyword in Java?
+30)explain access modifiers
+
+
+
+

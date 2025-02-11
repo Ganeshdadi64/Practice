@@ -1,2 +1,14 @@
 which use case we use cachee ? like redies cache?
 
+
+  Q)get product details based on the user role
+
+     if product.scope==public then only return product from the database
+     if product.scope== private
+              call user service and get user details and check the role
+                    if role==Admin
+                          return the product
+                    else
+                       return null
+
+

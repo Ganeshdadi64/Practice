@@ -1,0 +1,13 @@
+URL:https://www.myntra.com/t-shirts?rawQuery=t-shirts
+
+URL2:https://www.myntra.com/t-shirts?f=Brand%3AFabflee%3A%3ACategories%3ATshirts%3A%3AGender%3Amen%20women%2Cwomen&rawQuery=t-shirts
+URL3:https://www.myntra.com/t-shirts?f=Brand%3ABAESD%2CCOLOR%20CAPITAL%2CDressBerry%2CFabflee%2CRoadster%3A%3ACategories%3ATshirts%3
+A%3AGender%3Amen%20women%2Cwomen&rawQuery=t-shirts
+
+these are GET calls
+
+IF WE FILTER THE ithem the url size alson increased but the actual max size of chrome accepted url is 2048 characters only
+
+Note:if we send a url more then 2048 characters the chrome only consider upto 2048 remaining letters are removed.
+
+ because of this losses of data 
