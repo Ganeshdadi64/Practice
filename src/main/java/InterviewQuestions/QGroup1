@@ -12,7 +12,6 @@ of default methods in Java 8.
 1. The Problem: Backward Compatibility
 Suppose an interface is widely used by multiple classes in a large application or library. For example:
 
-
 interface Vehicle {
     void start();
     void stop();
@@ -221,6 +220,8 @@ Core Java Concepts:
 28)What are the differences between StringBuffer and StringBuilder?
 29) What is this keyword in Java?
 30)explain access modifiers
+31)types of injections
+
 
 
 

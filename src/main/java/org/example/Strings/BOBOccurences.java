@@ -5,6 +5,7 @@ public class BOBOccurences {
         String A = "abobcdbobbob"; // Input string
         int n = countBobOccurrences(A);
         System.out.println("Number of occurrences of 'bob': " + n);
+        System.out.println(Thread.currentThread().getName());
     }
 
     public static int countBobOccurrences(String A) {
