@@ -1,0 +1,158 @@
+
+
+
+
+
+3)Liskov Substitution Principle (LSP) - Simple Explanation
+  The Liskov Substitution Principle (LSP) states:
+
+  "Subclasses should be replaceable for their base classes without changing the behavior of the program."
+
+  In simple terms, a child class should extend the behavior of a parent class without breaking it.
+
+//Bad solution
+==================
+  class Bird {
+      public void fly() {
+          System.out.println("Flying...");
+      }
+  }
+
+  class Sparrow extends Bird { }
+
+  class Penguin extends Bird { // ❌ Penguins cannot fly
+      @Override
+      public void fly() {
+          throw new UnsupportedOperationException("Penguins cannot fly!");
+      }
+  }
+
+  public class Main {
+      public static void main(String[] args) {
+          Bird bird = new Penguin(); // ❌ This breaks the program!
+          bird.fly(); // Throws error: UnsupportedOperationException
+      }
+  }
+
+🔴 Why is this wrong?
+
+A Penguin is a bird, but it cannot fly.
+If we substitute Penguin for Bird, the fly() method fails.
+This violates LSP because Penguin cannot fully replace Bird without issues.
+
+
+
+//Good Solution
+===========================================
+abstract class Bird { // General bird properties
+    abstract void eat();
+}
+
+abstract class FlyingBird extends Bird { // Only flying birds have this method
+    abstract void fly();
+}
+
+class Sparrow extends FlyingBird {
+    public void eat() {
+        System.out.println("Sparrow is eating...");
+    }
+
+    public void fly() {
+        System.out.println("Sparrow is flying...");
+    }
+}
+
+class Penguin extends Bird { // Penguins don’t have fly()
+    public void eat() {
+        System.out.println("Penguin is eating...");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        FlyingBird sparrow = new Sparrow();
+        sparrow.fly(); // ✅ Works fine
+
+        Bird penguin = new Penguin();
+        penguin.eat(); // ✅ Works fine, and doesn't break LSP
+    }
+}
+
+✅ Why is this better?
+
+Now, Penguin doesn’t inherit fly() (which it cannot do).
+The FlyingBird class ensures only birds that can fly have the fly() method.
+Penguin can now be substituted without breaking anything.
+
+
+
+
+5. Dependency Inversion Principle (DIP)
+Definition: High-level modules should not depend on low-level modules. Instead, both should depend on abstractions.
+
+✅ Good Example:
+
+interface Database {
+    void connect();
+}
+
+class MySQLDatabase implements Database {
+    public void connect() {
+        System.out.println("Connected to MySQL");
+    }
+}
+
+class Application {
+    private Database database;
+
+    public Application(Database database) {
+        this.database = database;
+    }
+
+    public void start() {
+        database.connect();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Database db = new MySQLDatabase();
+        Application app = new Application(db);
+        app.start();
+    }
+}
+
+
+
+🔴 Bad Example (violates DIP):
+
+class MySQLDatabase {
+    public void connect() {
+        System.out.println("Connected to MySQL");
+    }
+}
+
+class Application {
+    private MySQLDatabase database;
+
+    public Application() {
+        database = new MySQLDatabase();  // Hardcoded dependency
+    }
+
+    public void start() {
+        database.connect();
+    }
+}
+
+💡 Why?
+
+The Application class is tightly coupled with MySQLDatabase.
+If we switch to a different database (e.g., PostgreSQL), we have to modify the Application class.
+Instead, we should depend on an interface (Database), allowing flexibility.
+
+
+
+
+
+
+
