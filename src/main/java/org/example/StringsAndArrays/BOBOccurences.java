@@ -1,4 +1,4 @@
-package org.example.Strings;
+package org.example.StringsAndArrays;
 
 public class BOBOccurences {
     public static void main(String[] args) {

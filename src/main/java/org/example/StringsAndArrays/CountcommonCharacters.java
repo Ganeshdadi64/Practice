@@ -1,6 +1,5 @@
-package org.example.Strings;
+package org.example.StringsAndArrays;
 
-import javax.swing.*;
 import java.util.HashMap;
 
 public class CountcommonCharacters {

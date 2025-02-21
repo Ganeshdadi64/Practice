@@ -1,4 +1,4 @@
-package org.example.Strings;
+package org.example.StringsAndArrays;
 
 public class ReverseStringwordbyword {
     public static void main(String[] args) {
