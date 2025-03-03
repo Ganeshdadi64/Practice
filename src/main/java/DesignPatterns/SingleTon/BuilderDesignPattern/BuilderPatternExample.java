@@ -51,6 +51,13 @@ class Vehicle {
 public class BuilderPatternExample {
 
     public static void main(String[] args) {
+
+
+//✔ VehicleBuilder is a static inner class, allowing Vehicle to encapsulate its creation logic.
+//✔ Vehicle.VehicleBuilder() means VehicleBuilder belongs to Vehicle, and we must reference it through Vehicle.
+//✔ Using new Vehicle.VehicleBuilder() helps create Vehicle objects in a flexible and readable way using method chaining.
+//
+
         Vehicle car = new Vehicle.VehicleBuilder("1500cc", 4).setAirbags(4).build();
         Vehicle bike = new Vehicle.VehicleBuilder("250cc", 2).build();
 

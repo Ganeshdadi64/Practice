@@ -1,0 +1,206 @@
+What is a Functional Interface?
+A functional interface in Java is an interface that has exactly one abstract method but can have multiple default or static methods.
+It is used primarily in Lambda Expressions and Method References to enable functional-style programming.
+
+Key Characteristics:
+✔ Single abstract method (SAM)
+✔ Can have default and static methods
+✔ Annotated with @FunctionalInterface (optional but recommended)
+
+note: If an interface has more than one abstract method, lambda expressions cannot be used.
+
+@FunctionalInterface
+interface Calculator {
+    int operate(int a, int b);  // Single Abstract Method (SAM)
+}
+
+
+public class FunctionalInterfaceExample {
+    public static void main(String[] args) {
+    //ekkada new key word use chesi instance through arguments nee pass chesi execute cheyyanavasaram ledu
+    //if your using lambda expression lambda automaticly predects if that interface is functional
+    //functional ithe okkate abstract method untadhi kabatti dhanike assign chestundhi.
+    // Using Lambda Expression to define the method behavior
+        Calculator add = (a, b) -> a + b;
+        Calculator multiply = (a, b) -> a * b;
+
+        // Calling the methods
+        System.out.println("Addition: " + add.operate(5, 3));       // Output: 8
+        System.out.println("Multiplication: " + multiply.operate(5, 3)); // Output: 15
+    }
+}
+
+
+
+before Java8
+============
+
+public class AnonymousClassExample {
+    public static void main(String[] args) {
+        // Creating an anonymous class that implements Runnable
+
+        ekkada Runnable anedhi interface anonymous class ante class ki ame undadhu {} ee body lo unnadi anonymous class
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Thread is running...");
+            }
+        };
+
+        // Starting a new thread
+        new Thread(task).start();
+    }
+}
+
+
+
+comparator before java8
+==========================
+
+import java.util.*;
+
+public class ComparatorExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("John", "Alex", "Emily", "Chris");
+
+        // Sorting using an anonymous class
+        Collections.sort(names, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareTo(s2); // Sorting in ascending order
+            }
+        });
+
+        System.out.println(names); // Output: [Alex, Chris, Emily, John]
+    }
+}
+
+
+after java8
+============
+import java.util.*;
+
+public class ComparatorLambdaExample {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("John", "Alex", "Emily", "Chris");
+
+        // Sorting using a lambda expression
+        names.sort((s1, s2) -> s1.compareTo(s2));
+
+        System.out.println(names); // Output: [Alex, Chris, Emily, John]
+    }
+}
+
+
+
+IMP
+
+Sorting Objects Using Comparator.comparing()
+If we have a list of custom objects, we can use Comparator.comparing():
+
+import java.util.*;
+
+class Person {
+    String name;
+    int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + age;
+    }
+}
+
+public class ComparatorWithObjects {
+    public static void main(String[] args) {
+        List<Person> people = Arrays.asList(
+                new Person("John", 30),
+                new Person("Alex", 25),
+                new Person("Emily", 35)
+        );
+
+        // Sorting by age using Comparator.comparing()
+        people.sort(Comparator.comparing(person -> person.age));
+
+        System.out.println(people);
+        // Output: [Alex - 25, John - 30, Emily - 35]
+    }
+}
+
+Chaining Multiple Comparators (thenComparing())
+people.sort(Comparator.comparing((Person p) -> p.age)
+                      .thenComparing(p -> p.name));
+
+
+
+
+ What is Collections in Java?
+ In Java, Collections is a framework that provides predefined classes and interfaces to store and manipulate
+ groups of objects efficiently. It includes Lists, Sets, Queues, Maps, and utility methods for sorting, searching,
+ and modifying collections.
+
+ 1. Key Components of Java Collections Framework (JCF)
+ Java Collections Framework (JCF) includes:
+
+ Interfaces – Defines abstract data structures (e.g., List, Set, Map).
+ Classes – Concrete implementations (e.g., ArrayList, HashSet, HashMap).
+ Algorithms – Utility methods for sorting, searching, etc. (in Collections class).
+
+2. Main Interfaces in Collections
+
+Interface 🏷	           Description 📝	                      Example Implementations 📌
+🔹 List	              🔹 Ordered, allows duplicates ✅	         🔹 ArrayList, LinkedList, Vector
+🟢 Set	              🟢 Unordered, no duplicates ❌	         🟢 HashSet, LinkedHashSet, TreeSet
+🔴 Queue	          🔴 FIFO (First-In-First-Out) structure	 🔴 LinkedList, PriorityQueue
+🟡 Map	              🟡 Key-value pairs, unique keys 🔑	     🟡 HashMap, TreeMap, LinkedHashMap
+
+
+
+What is Stream API in Java?
+The Stream API in Java (introduced in Java 8) provides a functional programming approach to process collections of data efficiently.
+It allows performing operations like filtering, mapping,
+sorting, and reducing in a declarative way.
+
+1. Key Features of Stream API
+✅ Works with Collections, Arrays, and I/O sources.
+✅ Supports functional programming with lambda expressions.
+✅ Parallel processing support for better performance.
+✅ Intermediate operations (lazy execution) and terminal operations (producing results).
+
+
+3. Stream Operations
+Stream operations are classified into two types:
+
+Intermediate Operations → Transform the stream (e.g., filter(), map(), sorted()).
+Terminal Operations → Produce a result (e.g., collect(), count(), forEach()).
+
+1)filter()
+List<String> filteredNames = names.stream()
+        .filter(name -> name.startsWith("A")) // Keep names starting with 'A'
+        .collect(Collectors.toList());
+
+System.out.println(filteredNames); // Output: [Alex]
+
+5. Parallel Streams (Performance Boost)
+For faster execution on large datasets, use parallel streams:
+
+
+
+Abstract Class vs. Interface in Java
+Feature 🎯	                          Abstract Class 🏛	                                    Interface 🔗
+🔹 Type of Methods	         Can have abstract and non-abstract (concrete) methods	       Only abstract methods (until Java 8), default and static methods (Java 8+), and private methods (Java 9+)
+🟢 Fields (Variables)	     Can have instance variables (with or without final)	       Only public static final constants (e.g., final static int MAX = 100;)
+🟡 Constructors	             ✅ Can have constructors	                                   ❌ Cannot have constructors
+🟠 Access Modifiers	         Can have public, protected, private methods	                Methods are public by default
+🔴 Multiple Inheritance	     ❌ Supports single inheritance	                                ✅ Supports multiple inheritance
+🚀 Performance	             🔹 Faster than interfaces (because of concrete methods)	   🔸 Slightly slower (due to method lookups in multiple interfaces)
+
+
+
+
+
+
