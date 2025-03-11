@@ -1,4 +1,4 @@
 package SQL.CommonConcepts;
 
-public class CommonConsepts {
+public class CommonConsepts  {
 }
