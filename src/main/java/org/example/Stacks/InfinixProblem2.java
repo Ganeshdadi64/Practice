@@ -33,7 +33,7 @@ public class InfinixProblem2 {
 
 
 //    Infix	       Postfix
-//    a + b	         ab
+//    a + b	         ab+
 //   (a + b) * c	     ab+c*
 //    a + b * c	     abc*+
 //    a * (b + c) / d	 abc+*d/

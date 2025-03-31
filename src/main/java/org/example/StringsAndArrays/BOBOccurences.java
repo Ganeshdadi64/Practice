@@ -18,6 +18,7 @@ public class BOBOccurences {
             if (A.substring(i, i + 3).equals("bob")) {
                 count++;
             }
+
         }
         return count;
     }

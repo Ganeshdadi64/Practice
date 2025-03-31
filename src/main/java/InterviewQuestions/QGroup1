@@ -223,6 +223,384 @@ Core Java Concepts:
 31)types of injections
 
 
+32)Why reflections used in java?
+
+ 🌟 Reflection in Java
+ Reflection in Java is used to inspect and manipulate classes, methods, fields,
+ and constructors at runtime. It allows a program to analyze itself and dynamically create objects,
+ invoke methods, and access fields without knowing their names at compile time
+
+
+  🎯 Why is Reflection Used in Java?
+  🔍 1. Runtime Type Inspection
+  ✅ Helps to examine class metadata (e.g., methods, fields, annotations).
+
+  📌 Example: Class.forName("com.example.MyClass"); // Load a class dynamically
+
+
+
+33)what are the different types of class loaders in java
+
+In Java, Class Loaders are responsible for loading class files into memory at runtime. Java provides different types
+of class loaders to load classes dynamically.
+
+📌 Types of Class Loaders in Java
+Java has the following built-in class loaders:
+
+1️⃣ Bootstrap ClassLoader (Primordial ClassLoader)
+Loads: Core Java classes from the rt.jar or $JAVA_HOME/lib.
+
+Implemented in: Native Code (C/C++).
+
+2️⃣ Extension ClassLoader (Platform ClassLoader)
+Loads: Classes from the ext directory ($JAVA_HOME/lib/ext or java.ext.dirs).
+
+Example:System.out.println(System.class.getClassLoader()); // Output: null (Bootstrap)
+        System.out.println(com.sun.crypto.provider.AESKeyGenerator.class.getClassLoader());
+
+
+Bootstrap ClassLoader
+    ⬇
+Extension (Platform) ClassLoader
+    ⬇
+Application (System) ClassLoader
+    ⬇
+Custom ClassLoader
+
+
+34)what is the copy constructor in java
+
+🎯 Copy Constructor in Java
+A copy constructor is a special type of constructor used to create a new object by copying an existing object.
+Java does not provide a built-in copy constructor, but we can create one manually.
+
+📌 Why Use a Copy Constructor?
+✅ To copy object properties from an existing object to a new one.
+✅ Avoids modifying the original object when changes are made to the copy.
+✅ Useful for creating deep copies of objects with reference-type fields.
+
+class Student {
+    String name;
+    int age;
+
+    // Constructor
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Copy Constructor
+    Student(Student s) {
+        this.name = s.name;  // Copying values
+        this.age = s.age;
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+public class CopyConstructorDemo {
+    public static void main(String[] args) {
+        Student s1 = new Student("Alice", 22);   // Original Object
+        Student s2 = new Student(s1);            // Copying s1 into s2
+
+        // Modifying copied object s2
+        s2.name = "Bob";
+        s2.age = 25;
+
+        // Display both objects
+        System.out.println("Original Object:");
+        s1.display();  // Output: Name: Alice, Age: 22
+
+        System.out.println("Copied Object:");
+        s2.display();  // Output: Name: Bob, Age: 25
+    }
+}
+
+
+35)Explain shallow copy
+
+it is just copy the references not original objects of what references points
+
+
+🔹 What is Shallow Copy?
+A shallow copy copies an object without copying its referenced objects.
+Instead, it copies the reference of the nested objects.
+
+
+🔹 Example: Shallow Copy
+Imagine you have a Student object that has a reference to an Address object.
+
+class Address {
+    String city;
+
+    Address(String city) {
+        this.city = city;
+    }
+}
+
+class Student implements Cloneable {
+    String name;
+    Address address; // Reference type
+
+    Student(String name, Address address) {
+        this.name = name;
+        this.address = address;             NOTE: ekkada address matrame copy chesam not obj
+    }
+
+    // Shallow Copy using clone()
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();  // Only copies the reference
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", City: " + address.city);
+    }
+}
+
+public class ShallowCopyExample {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        Address addr = new Address("New York");
+        Student s1 = new Student("Alice", addr);
+
+        Student s2 = (Student) s1.clone(); // Cloning s1 into s2
+
+        // Modifying copied object s2
+        s2.address.city = "Los Angeles"; // Change the city in s2
+
+        System.out.println("Original Object:");
+        s1.display();  // Output: Name: Alice, City: Los Angeles ❌ (Changed)
+
+        System.out.println("Copied Object:");
+        s2.display();  // Output: Name: Alice, City: Los Angeles
+    }
+}
+
+
+🔹 What Happens Here?
+1️⃣ s1 (original object) and s2 (copied object) share the same Address reference.
+2️⃣ When we change s2.address.city, it also changes s1.address.city because both objects refer to the same address object.
+3️⃣ This is called shallow copy because the copy is not fully independent.
+
+
+36)explain DeepCopy?
+
+🔹 What is Deep Copy?
+A deep copy creates a completely new object, including new copies of all nested objects.
+
+🔹 Example: Deep Copy
+To avoid the issue in shallow copy, we need to create a
+new Address object inside our copy constructor.
+
+
+
+class Address {
+    String city;
+
+    Address(String city) {
+        this.city = city;
+    }
+
+    // Copy constructor for deep copy
+    Address(Address other) {
+        this.city = other.city; // Creates a new object instead of copying the reference
+    }
+}
+
+class Student {
+    String name;
+    Address address;
+
+    Student(String name, Address address) {
+        this.name = name;
+        this.address = new Address(address); // Creating a new Address object
+    }
+
+    void display() {
+        System.out.println("Name: " + name + ", City: " + address.city);
+    }
+}
+
+public class DeepCopyExample {
+    public static void main(String[] args) {
+        Address addr = new Address("New York");
+        Student s1 = new Student("Alice", addr);
+
+        Student s2 = new Student(s1.name, s1.address); // Deep copy using constructor
+
+        s2.address.city = "Los Angeles"; // Change only s2's address
+
+        System.out.println("Original Object:");
+        s1.display();  // Output: Name: Alice, City: New York ✅ (No change)
+
+        System.out.println("Copied Object:");
+        s2.display();  // Output: Name: Alice, City: Los Angeles
+    }
+}
+
+
+🔹 What Happens Here?
+1️⃣ A new Address object is created for s2, so it does not share the reference with s1.
+2️⃣ Modifying s2.address.city does not affect s1.address.city.
+3️⃣ This is called deep copy, as the copy is completely independent of the original.
+
+📊 Difference Between Shallow Copy & Deep Copy
+
+Feature	                Shallow Copy	                                 Deep Copy
+Copies Reference?	        ✅ Yes (Same memory reference)	           ❌ No (New object is created)
+Changes Affect Original?	✅ Yes	                                   ❌ No
+Performance	                🚀 Faster	                               🐢 Slower (creates new objects)
+Used For	               When objects have only primitive fields	    When objects have reference fields
+
+
+
+37)what is coercion in java
+
+
+🔹 Coercion in Java
+Coercion in Java refers to the automatic or explicit conversion of one data type into another. It happens when an operation requires a different data type than the one provided.
+
+📌 Types of Coercion in Java
+Implicit Coercion (Type Promotion / Widening Conversion)
+
+Java automatically converts a smaller data type to a larger data type.
+
+No data loss occurs.
+
+Example: int → long, float → double.
+
+Explicit Coercion (Type Casting / Narrowing Conversion)
+========================================================
+
+The programmer manually converts a larger data type into a smaller one.
+
+Data loss may occur.
+
+Example: double → int, long → byte.
+
+
+
+38)What is Generics
+
+
+
+📌 Why Use Generics?
+✔ Type Safety – Ensures that the correct data type is used at compile time.
+✔ Code Reusability – Allows writing one generic class or method for multiple data types.
+✔ Eliminates Type Casting – No need for explicit casting.
+✔ Compile-Time Checking – Detects errors early instead of runtime failures.
+
+// Generic class with type parameter <T>
+class Box<T> {
+    private T value;
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+
+public class GenericExample {
+    public static void main(String[] args) {
+        Box<Integer> intBox = new Box<>();  // Works with Integer
+        intBox.setValue(100);
+        System.out.println("Integer Value: " + intBox.getValue());
+
+        Box<String> strBox = new Box<>();   // Works with String
+        strBox.setValue("Hello Generics!");
+        System.out.println("String Value: " + strBox.getValue());
+    }
+}
+
+
+
+
+39) Java is pass by value or pass by reference?
+
+Java uses pass-by-value for all arguments, including primitive types and objects.
+However, how this works for objects often leads to confusion.
+
+📌 Java is Pass-by-Value
+🔹 When you pass a variable to a method in Java, you pass a copy of the value.
+🔹 For primitive types, this means the actual value is copied.
+🔹 For objects, this means the reference (memory address) is copied, not the actual object itself.
+
+So, Java is not pass-by-reference, but pass-by-value of the reference when dealing with objects.
+
+public class PassByValueExample {
+    public static void modify(int x) {
+        x = 20;  // This change is local to the method
+         System.out.println(x); output: 20
+    }
+
+    public static void main(String[] args) {
+        int num = 10;
+        modify(num);
+        System.out.println("Value of num: " + num); // Output: 10 (Unchanged) because of this java is pass by value
+
+        }
+
+🔹 Example with Objects (Pass-by-Value of Reference)
+
+
+        class Person {
+            String name;
+
+            Person(String name) {
+                this.name = name;
+            }
+            P--> OBJECT SAME POINT STILL POINT CHESTUNDI SO CHANGE IPOTHUNDHI THIS SHALLOW COPY ALSO
+            public static void changeName(Person p) {
+                p.name = "Alice";  // Modifies the same object in memory
+            }
+
+            public static void main(String[] args) {
+                Person person = new Person("Bob");
+                changeName(person);
+                System.out.println("Person's name: " + person.name); // Output: Alice ✅ (Changed)
+            }
+        }
+
+❌ Reassigning the reference inside the method does NOT change the original object.
+class Person {
+    String name;
+
+    Person(String name) {
+        this.name = name;
+    }
+
+    public static void changeReference(Person p) {
+        p = new Person("Charlie");  // Reassigning reference (does NOT affect original)
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person("Bob");
+        changeReference(person);
+        System.out.println("Person's name: " + person.name); // Output: Bob ❌ (Unchanged)
+    }
+}
+
+
+
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

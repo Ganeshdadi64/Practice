@@ -125,6 +125,9 @@ public class ComparatorWithObjects {
 
         // Sorting by age using Comparator.comparing()
         people.sort(Comparator.comparing(person -> person.age));
+        names.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+       people.sort((p1, p2) -> Integer.compare(p1.age, p2.age).compare(p1.name,p2.name);
+
 
         System.out.println(people);
         // Output: [Alex - 25, John - 30, Emily - 35]
@@ -185,7 +188,7 @@ List<String> filteredNames = names.stream()
 
 System.out.println(filteredNames); // Output: [Alex]
 
-5. Parallel Streams (Performance Boost)
+5. Parallel StreamsAndLambda (Performance Boost)
 For faster execution on large datasets, use parallel streams:
 
 
@@ -200,7 +203,82 @@ Feature 🎯	                          Abstract Class 🏛	                     
 🚀 Performance	             🔹 Faster than interfaces (because of concrete methods)	   🔸 Slightly slower (due to method lookups in multiple interfaces)
 
 
+Q)How to remove white spaces using java8 features:
+
+String input = "  Java   8   Features  ";
+String result = input.replaceAll("\\s+", "");  // Removes all whitespaces
+System.out.println(result);  // Output: Java8Features
+
+🚀 2. Using Java 8 StreamsAndLambda (Character Stream)
+
+String input = "  Java   Stream  Example  ";
+String result = input.chars()  // IntStream of characters
+    .filter(c -> !Character.isWhitespace(c))  // Remove spaces
+    .mapToObj(c -> String.valueOf((char) c))  // Convert to String
+    .collect(Collectors.joining());  // Join without spaces
+
+System.out.println(result);  // Output: JavaStreamExample
+
+
+🚀 3. Remove Only Leading and Trailing Spaces
+
+String input = "   Trim this string   ";
+String result = input.trim();
+System.out.println(result);  // Output: Trim this string
 
 
 
+q)How to use paraller streams
+
+⚙️ How to Use Parallel StreamsAndLambda
+1. Convert a sequential stream to parallel:
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+numbers.parallelStream()
+       .forEach(n -> System.out.println(n + " " + Thread.currentThread().getName()));
+
+ Parallel StreamsAndLambda are not thread safe
+
+
+
+Q)Static methods in java8
+==============================================
+
+🚀 What’s New in Java 8? — Static Methods in Interfaces
+Before Java 8, interfaces could not have method bodies.
+
+In Java 8, you can define static methods inside interfaces — this is a big enhancement.
+
+
+interface Utils {
+    static void printHello() {
+        System.out.println("Hello from interface static method!");
+    }
+}
+
+// Usage
+Utils.printHello();  // Called using interface name
+
+
+@)what is serialization and deserialization
+
+🔧 In Java Terms:
+Term	            What Happens?
+Serialization	    Object → Byte data (Save/Send)
+Deserialization	    Byte data → Object (Restore/Receive)
+
+
+q)is hashMAP Synchrononized?
+
+❓ Is HashMap Synchronized in Java?
+🔴 No, HashMap is not synchronized by default.
+This means:
+
+It is not thread-safe.
+If multiple threads access a HashMap at the same time and at least one thread modifies
+it (e.g., add/remove), it can lead to data inconsistency, race conditions,
+or even exceptions (like ConcurrentModificationException).
+
+Q) can we override or overloadstatic methodes?
 

@@ -1,0 +1,11 @@
+
+Why Use JPA?
+✅ Simplifies Database Interactions – Eliminates complex SQL queries by using Java objects.
+✅ Works with Different Databases – Supports various relational databases like MySQL, PostgreSQL, Oracle, etc.
+✅ Supports Object-Relational Mapping (ORM) – Uses annotations to map Java classes to database tables.
+✅ Reduces Boilerplate Code – No need to write JDBC code, prepared statements, or result set handling.
+✅ Supports Transactions, Caching, and Lazy Loading – Optimizes performance and improves efficiency.
+
+
+
+

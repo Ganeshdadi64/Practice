@@ -25,7 +25,7 @@ public class ChangeCharacter {
         }
         // Step 2: Store frequencies in a list and sort in ascending order
         List<Integer> frequencies = new ArrayList<>(freqMap.values());
-        Collections.sort(frequencies);
+           Collections.sort(frequencies);
         // assume frequencies=[1,2,2,2]  from this distinctcount=4 and B=2 i ahve 2 chances for decrease the distintcount
         //if i remove 1 the new distinctcount is 3 and B=1 and do dry run .
         int distinctCount = frequencies.size(); // Initial distinct characters
@@ -37,6 +37,8 @@ public class ChangeCharacter {
                 break; // No more changes can be made
             }
         }
+
+        System.out.println(distinctCount);
 
 
 

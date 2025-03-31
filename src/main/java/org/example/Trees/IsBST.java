@@ -2,8 +2,12 @@ package org.example.Trees;
 
 public class IsBST {
     public static void main(String[] args) {
+
+
+
         TreeNode t1=new TreeNode(2);
         isBst(t1);
+
     }
 
     private static void isBst(TreeNode t1) {

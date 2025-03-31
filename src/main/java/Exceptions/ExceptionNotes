@@ -1,0 +1,65 @@
+1. Checked Exceptions (Compile-Time Exceptions)
+These are exceptions that the compiler forces you to handle (either by try-catch or throws).
+They are checked at compile time.
+If not handled, the code will not compile.
+Examples:
+IOException
+SQLException
+FileNotFoundException
+ClassNotFoundException
+InterruptedException
+
+2. Unchecked Exceptions (Runtime Exceptions)
+These occur at runtime and are not checked at compile time.
+Java does not force you to handle them.
+Typically caused by programming logic errors.
+Examples:
+NullPointerException
+ArrayIndexOutOfBoundsException
+ArithmeticException
+NumberFormatException
+IllegalArgumentException
+
+Q) if any exception happened in finally block what happened
+
+the exception happened in finally block it overriden and suppersion remaining exceptions
+Key Idea:
+If an exception occurs in the finally block, it will override any exception that was thrown in the try or catch block.
+The original exception is suppressed and not propagated unless explicitly handled.
+
+The original exception is not lost; it's stored as a suppressed exception in the newer one (from finally)
+
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            throw new RuntimeException("Exception from try");
+        } finally {
+            throw new RuntimeException("Exception from finally");
+        }
+    }
+}
+output:Exception from finally"
+
+
+Q) Difference b/t throws and thros keyword
+
+🔹 1. throw Keyword
+Feature	    Description
+Purpose   	Used to actually throw an exception (either checked or unchecked).
+Usage       Location	Used inside a method or block.
+Syntax   	throw new ExceptionType("Message");
+Limit   	Can throw only one exception at a time.
+Example 	throw new ArithmeticException("Divide by zero!");
+
+🔹 2. throws Keyword
+Feature	       Description
+Purpose     	Used to declare exceptions that a method might throw.
+Usage           Location	Used in method signature.
+Syntax      	returnType methodName() throws ExceptionType1, ExceptionType2 {}
+Limit	       Can declare multiple exceptions.
+Example	       public void readFile() throws IOException, SQLException
+
+
+
+

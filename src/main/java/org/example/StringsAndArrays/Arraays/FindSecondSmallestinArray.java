@@ -7,6 +7,8 @@ import java.util.OptionalInt;
 
 public class FindSecondSmallestinArray {
 
+//without using sort
+
 
 
     public static void main(String[] args) {
