@@ -29,3 +29,90 @@ ii)✅ Pattern Matching for Switch (Preview) – JEP 406
 actuall ga switch syntax nee modify chesaru
 
 
+
+1. Oops
+2. Why multiple inheritance not possible
+3. Wap to find larger num
+4. Wap to find  2nd largest num
+5. Java 8 features
+6. Lambda expression
+7. Do 3,4 using lambda
+8. Even num program
+9. Design patterns
+10. Singleton pattern and it's implementation
+11. Springboot annotations
+12. @qualifier annotations
+13. Actuators
+14. Different methods in rest get put post ...
+15. What is rest api
+16. Jpa entity
+17. Sql query to find 2nd highest salary
+18. Types of join
+19. Javascript == and === difference
+20. Js how do you call apis
+21. Why css is used
+22. Java streams ?
+23. Difference between areaylist and linkedlist
+24. Difference between hashmap and hashtable
+25. What are collecections
+
+
+1. Whay only writing main in public static void main (STRING ...ARGS)
+2. Why string args and not obj3ct args
+3. What is reflection
+4. What is dependency injection how it's working internally
+5.How does arraylist increases its size?
+
+  How do you perform search in linkedlist
+
+  In what scenario arraylist is better and when linkedlist
+
+  How all annotations are working?
+
+  What is bean and dependent injection
+
+
+  Real world example of linked list
+
+  Reflection
+  How to break singleton
+  Filter internal  working
+
+  1. Write a Java program by make use of functional interface and find whether the number is even or odd
+  2. Write a Java program to write the count of vowels in the string
+  3. Also implement above using Java streams
+  4. How do you handle exceptions in Spring boot application
+  5. What do you know about deployment process of your code into server.  And are the servers on cloud?
+  6. What is difference between normal tey catch block and try with resource block
+
+
+
+  1. Explain about your latest project
+  2. What are available servers in Spring boot
+  3. How you will configure tomcat server in Spring boot, syntaxes for server configuration in applications.properti3s file
+  4. Default port number of tomact
+  5. What happens if we give port as 0
+  6. What is use springboot dev tools and how to configure
+  7. How to debug Spring Boot application
+  8. Given an array of numbers find the 2nd largest number using Java 8 feature
+  9. Given array of number print distinct elements in array using Java 8 feature
+  10. Given an array of numbers print only multiple of 5 using Java 8 feature
+  11. Explain Java 21 feature,  Java 8 feature
+  12. Explain how filter works internally  (ans: predicate, predicate.test)
+  13. Explain about lambda
+  14. Explain about types of predicates available
+  15. Why streams are introduced
+  16. Why Java 8 is introduced
+  17. What is singleton pattern
+  18. How can you break singleton pattern
+  19. Exceptional handling in Spring boot
+  20. Explain about checked and unchecked exceptions
+  21. Given you have nullpoonter exception, index out of bound exception, what will be the order you will be writing
+  22. What is rate limiters
+  23. What do you know about idempotency
+  24. How do you handle disabling of multiple clicks so that the record don't get created ( idempotent apis)
+  25. Different api method
+  26. what is reflection
+  27. How can you break singleton pattern
+
+
