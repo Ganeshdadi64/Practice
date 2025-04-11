@@ -35,32 +35,115 @@ actuall ga switch syntax nee modify chesaru
 3. Wap to find larger num
 4. Wap to find  2nd largest num
 5. Java 8 features
-6. Lambda expression
+6. Lambda expression   skip
 7. Do 3,4 using lambda
-8. Even num program
-9. Design patterns
-10. Singleton pattern and it's implementation
-11. Springboot annotations
-12. @qualifier annotations
+===================================================
+import java.util.function.BiFunction;
+
+public class LambdaLargerNumber {
+    public static void main(String[] args) {
+        // Lambda to find the larger number
+        BiFunction<Integer, Integer, Integer> findLarger = (a, b) -> (a > b) ? a : b;
+
+        int num1 = 3;
+        int num2 = 4;
+
+        int result = findLarger.apply(num1, num2);
+
+        System.out.println("The larger number is: " + result);
+    }
+}
+
+8. Even num program  skip
+===================================
+9. Design patterns   skip
+10. Singleton pattern and it's implementation  skip
+11. Springboot annotations   skip
+12. @qualifier annotations skip
+
 13. Actuators
-14. Different methods in rest get put post ...
-15. What is rest api
-16. Jpa entity
+======================================
+Spring Boot Actuator provides built-in endpoints that give insight into your app’s health, metrics,
+logs, environment, and more — without writing extra code.
+
+14. Different methods in rest get put post ...  skp
+=================================================
+15. What is rest api   skip
+16. Jpa entity     skip
 17. Sql query to find 2nd highest salary
-18. Types of join
-19. Javascript == and === difference
+SELECT DISTINCT salary
+FROM Employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+
+18. Types of join   skip
+=======================
+19. Javascript == and === difference  skip
+
 20. Js how do you call apis
+
 21. Why css is used
 22. Java streams ?
-23. Difference between areaylist and linkedlist
+23. Difference between areaylist and linkedlist    skip
 24. Difference between hashmap and hashtable
+🧱 3. Null Keys & Values
+Feature	             HashMap	   Hashtable
+Allows null key?	✅ Yes (only one)	❌ No
+Allows null values?	✅ Yes	            ❌ No
 25. What are collecections
 
 
 1. Whay only writing main in public static void main (STRING ...ARGS)
-2. Why string args and not obj3ct args
+✅ So, main is not just any method — it’s the standard method name that JVM is hardcoded to call when a program starts.
+
+Keyword	Meaning
+public	JVM needs to access it from outside the class, so it must be public.
+static	No object needed to call it. JVM can directly invoke it without creating an object.
+void	It doesn't return anything.
+main	The method name that JVM looks for. Must be exactly main.
+String[] args	This is how command-line arguments are passed to your program.
+
+
+2. Why string args and not obj3ct args   skip
+
 3. What is reflection
+
+🪞 What is Reflection in Java?
+Reflection is a feature in Java that allows you to:
+
+Inspect and manipulate classes, methods, fields, and constructors at runtime — even if you don’t know them at compile time.
+
+.
+
+🔍 What Can You Do with Reflection?
+✅ Inspect class name, methods, fields, annotations
+✅ Access private fields and methods
+✅ Create objects at runtime
+✅ Call methods dynamically
+✅ Change values of fields even if they’re private
+
+
+
 4. What is dependency injection how it's working internally
+===========================================================
+Dependency Injection is a design pattern where objects are given their dependencies from the outside,
+rather than creating them inside the class.
+
+
+
+🧠 Internally:
+Spring scans all classes with @Component, @Service, etc.
+
+It builds a map of beans (beanName -> instance)
+
+When it sees @Autowired, it:
+
+Uses reflection to find the field/constructor
+
+Fetches the correct bean from the map
+
+Uses Field.set() or constructor injection to inject it
+
 5.How does arraylist increases its size?
 
   How do you perform search in linkedlist
