@@ -1,14 +1,145 @@
-which use case we use cachee ? like redies cache?
+🚀 Step-by-Step: Create and Run Spring Cloud API Gateway
+
+📦 1. Create a New Spring Boot Project (API Gateway)
+You can use Spring Initializr or generate manually.
+
+Use this configuration:
+Project: Maven
+
+Spring Boot: 3.2.5 (latest stable)
+
+Dependencies:
+
+Spring Cloud Gateway
+
+Eureka Discovery Client
+
+Spring Boot DevTools (optional)
 
 
-  Q)get product details based on the user role
 
-     if product.scope==public then only return product from the database
-     if product.scope== private
-              call user service and get user details and check the role
-                    if role==Admin
-                          return the product
-                    else
-                       return null
+
+api-gateway/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/example/apigateway/
+│       │       └── ApiGatewayApplication.java
+│       └── resources/
+│           ├── application.yml
+├── pom.xml
+
+
+
+
+package com.example.apigateway;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+@SpringBootApplication
+@EnableEurekaClient
+public class ApiGatewayApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayApplication.class, args);
+    }
+}
+
+
+
+
+
+▶️ 6. Run Everything in Order
+Start Eureka Server on localhost:8761
+
+Start API Gateway (this project)
+
+Start Microservices (like product-service, order-service) that are registered with Eureka
+
+
+
+# -------------------
+# Server Config
+# -------------------
+server.port=8080
+
+# -------------------
+# Spring Application Name
+# -------------------
+spring.application.name=api-gateway
+
+# -------------------
+# Eureka Client Config
+# -------------------
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true
+
+# -------------------
+# Gateway Routes
+# -------------------
+spring.cloud.gateway.routes[0].id=product-service
+spring.cloud.gateway.routes[0].uri=lb://PRODUCT-SERVICE
+spring.cloud.gateway.routes[0].predicates[0]=Path=/products/**
+
+spring.cloud.gateway.routes[1].id=order-service
+spring.cloud.gateway.routes[1].uri=lb://ORDER-SERVICE
+spring.cloud.gateway.routes[1].predicates[0]=Path=/orders/**
+
+
+How Load Balancing works and write steps
+========================================
+
+
+✅ Load Balancing Scenarios You Can Use
+1. ✅ Through Spring Cloud Gateway (Recommended for APIs)
+2. ✅ Through FeignClient (for inter-service calls)
+3. ✅ With RestTemplate + LoadBalancer (manual call with load balancing)
+
+
+
+📦 Scenario 1: Load Balancing via Spring Cloud Gateway (already done!)
+You’ve already implemented this in your application.properties:
+
+spring.cloud.gateway.routes[0].uri=lb://PRODUCT-SERVICE
+
+
+
+
+🔄 What happens:
+Gateway calls Eureka, gets list of instances of PRODUCT-SERVICE, and rotates requests among them.
+
+
+
+🛠 Scenario 3: Load Balancing via RestTemplate
+💡 For manual calls
+Step 1: Register a load-balanced RestTemplate bean
+
+
+@Configuration
+public class AppConfig {
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+
+
+
+Step 2: Use it in your service class
+
+
+@Autowired
+private RestTemplate restTemplate;
+
+public String callProductService() {
+    return restTemplate.getForObject("http://PRODUCT-SERVICE/products", String.class);
+}
+
+
+
+
 
 

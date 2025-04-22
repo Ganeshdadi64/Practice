@@ -68,8 +68,8 @@ logs, environment, and more — without writing extra code.
 
 14. Different methods in rest get put post ...  skp
 =================================================
-15. What is rest api   skip
-16. Jpa entity     skip
+15. What is rest api   ----  skip
+16. Jpa entity               skip
 17. Sql query to find 2nd highest salary
 SELECT DISTINCT salary
 FROM Employee
@@ -132,34 +132,76 @@ rather than creating them inside the class.
 
 
 🧠 Internally:
+
+Explain @Sevice and @Repository annotations
+
+In Spring Framework (specifically Spring Boot), @Service and @Repository are stereotype
+annotations used to define classes as Spring-managed components and to give them specific
+roles within the application architecture. These annotations help Spring in recognizing which
+classes are part of the service layer and persistence layer, respectively.
 Spring scans all classes with @Component, @Service, etc.
 
-It builds a map of beans (beanName -> instance)
 
-When it sees @Autowired, it:
+🔹 @Service Annotation
+Purpose:
+Marks a class as a Service component, which typically contains business logic.
+
+How it works:
+
+Internally, @Service is a specialization of @Component, so the class is automatically
+detected during component scanning and registered as a Spring bean.
+
+
+🔹 @Repository Annotation
+Purpose:
+Marks a class as a DAO (Data Access Object) or Repository component, which directly
+interacts with the database.
+
+
+When it sees @Autowired and how it works ?
+
+@Autowired is a Spring annotation that tells the Spring container to automatically inject a bean into another bean.
+It's part of Spring's Dependency Injection mechanism.
+
+
+
+Q)What is the use of @configuration
+========================================
+⚙️ How It Works (Simple Terms)
+When the application starts, Spring looks for classes marked with @Configuration.
+
+It processes the methods annotated with @Bean inside that class.
+
+Spring calls those methods and takes the returned objects, and then registers them as beans in the Spring container.
+
+These beans can then be injected anywhere using @Autowired or constructor injection.
+
 
 Uses reflection to find the field/constructor
 
-Fetches the correct bean from the map
 
 Uses Field.set() or constructor injection to inject it
 
 5.How does arraylist increases its size?
 
-  How do you perform search in linkedlist
+6)How do you perform search in linkedlist
 
-  In what scenario arraylist is better and when linkedlist
+7) In what scenario arraylist is better and when linkedlist
 
-  How all annotations are working?
+8)How all annotations are working?
 
-  What is bean and dependent injection
+9)What is bean and dependent injection
 
 
-  Real world example of linked list
+10)Real world example of linked list
 
   Reflection
   How to break singleton
   Filter internal  working
+
+
+
+  Q)
 
   1. Write a Java program by make use of functional interface and find whether the number is even or odd
   2. Write a Java program to write the count of vowels in the string
