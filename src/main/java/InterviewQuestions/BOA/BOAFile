@@ -1,0 +1,119 @@
+1)what is the difference b/w comparable and comparator
+
+In Java, both Comparable and Comparator are used to compare objects, especially for sorting. However, they differ in how and where the comparison logic is defined.
+
+✅ 1. What is Comparable?
+🧠 Think of it like this:
+Suppose you have a list of Students, and you want to sort them by roll number.
+If you say: “Every student object should know how to compare itself with another student”, then use Comparable.
+
+
+class Student implements Comparable<Student> {
+    int rollNo;
+    String name;
+
+    Student(int rollNo, String name) {
+        this.rollNo = rollNo;
+        this.name = name;
+    }
+
+    // Natural ordering: compare by roll number
+    public int compareTo(Student s) {
+        return this.rollNo - s.rollNo;
+    }
+}
+
+
+List<Student> list = new ArrayList<>();
+list.add(new Student(2, "Ram"));
+list.add(new Student(1, "Shyam"));
+list.add(new Student(3, "Mohan"));
+
+Collections.sort(list); // Uses compareTo()
+
+
+✅ 2. What is Comparator?
+🧠 Think of it like this:
+Now suppose you want to sort same students, but this time by name instead of roll number.
+But you don’t want to change the original class (Student). Then use Comparator.
+
+🧾 Definition:
+Comparator is also an interface.
+
+It is used when we want to compare two different objects of a class externally.
+
+You write the comparison logic outside the class using compare() method.
+
+
+
+class NameComparator implements Comparator<Student> {
+    public int compare(Student s1, Student s2) {
+        return s1.name.compareTo(s2.name); // sort by name
+    }
+}
+
+
+Collections.sort(list, new NameComparator()); // sort by name using comparator
+
+🧠 Easy real-life analogy:
+Comparable → "I compare myself" → Like students saying: "I am better than him because my roll number is smaller".
+
+Comparator → "Someone else compares us" → Like a teacher comparing students by name, marks, or age — not roll number.
+
+
+
+2)what is dynamic and static loading in java?
+
+
+✅ What is Static Loading?
+🧠 Simple Idea:
+Static loading means:
+
+"Java loads the class at compile time or early runtime, even before it is needed."
+
+Dog d = new Dog();  // Static loading
+Here, the Dog class is loaded and initialized immediately when the JVM sees this line.
+
+✅ What is Dynamic Loading?
+🧠 Simple Idea:
+Dynamic loading means:
+
+"Java loads the class into memory only when it's actually needed at runtime."
+
+
+🔍 Real-Life Analogy:
+Static Loading: Like bringing all the items into your room before the event starts, even if you don’t use them.
+
+Dynamic Loading: Like ordering food only when a guest asks for it.
+
+
+3)how threads communicate to each other
+
+✅ Why do threads need to communicate?
+Imagine two threads:
+
+One produces data (Producer)
+
+Another consumes data (Consumer)
+
+They must coordinate:
+
+The consumer should wait until the producer produces something.
+
+The producer should wait if the buffer is full.
+
+👉 This coordination is thread communication.
+
+
+
+
+✅ How do threads communicate in Java?
+Java provides built-in methods for inter-thread communication:
+
+Method	Purpose
+wait()	Thread tells JVM: "I’ll pause, wake me later"
+notify()	Wakes up one thread that called wait()
+notifyAll()	Wakes up all waiting threads
+
+
+
