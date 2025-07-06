@@ -116,4 +116,62 @@ notify()	Wakes up one thread that called wait()
 notifyAll()	Wakes up all waiting threads
 
 
+5) what is markable interface
 
+
+6)how does provide meta data to spring container?
+
+Great question! In Spring, metadata tells the Spring container how to manage beans — what objects to create, how to configure them, how they relate, etc.
+This metadata is provided in multiple ways, and here’s how it works in detail:
+
+
+
+✅ 1. Metadata via Annotations (most common)
+Spring uses annotations to mark classes and methods with metadata. This is the most modern and popular way.
+
+🔹 Example: @Component, @Service, @Repository, @Controller
+
+
+Spring scans for classes with these annotations during component scanning (@ComponentScan) and registers them as beans.
+
+
+
+✅ 2. Metadata via XML Configuration (old style)
+Spring used to use XML files to define beans and metadata.
+
+
+
+7) what is mullty threading?
+
+🔄 What is Multithreading in Java?
+Multithreading in Java is a feature that allows multiple threads (small units of a process) to run concurrently. It helps in performing
+multiple tasks simultaneously within a single program to improve performance and responsiveness.
+
+8) what is the difference b\w JPA and hibernate?
+
+
+
+9)Scenario based questions: one API might expect input as single ID and second API may get 2 inputs, how do you write java logics
+  If any exception you get in DAO layer, how will you cascade message from DAO to Ul layer?
+  Purpose/importance of Generics in Java(like why do we give integer or any data type)
+
+
+  🧩 1. Scenario-Based API Input: One ID vs Two Inputs
+  📌 Scenario:
+  API 1: Accepts productId
+
+  API 2: Accepts productId + categoryId
+
+  You want to write a service method that handles both cases flexibly.
+
+  ✅ Approach 1: Method Overloading
+
+  public ProductDTO getProductDetails(int productId) {
+      // Logic when only productId is present
+      return productRepository.findById(productId);
+  }
+
+  public ProductDTO getProductDetails(int productId, int categoryId) {
+      // Logic when both inputs are available
+      return productRepository.findByProductIdAndCategoryId(productId, categoryId);
+  }
